@@ -16,8 +16,8 @@ $mysqli = new mysqli(
 );
 
 // Get all movies
-$result = $mysqli->query("SELECT * FROM movies");
-$movies = $result->fetch_all(MYSQLI_ASSOC);
+$result = $mysqli->query("SELECT * FROM movies1");
+$movies1 = $result->fetch_all(MYSQLI_ASSOC);
 
 ?>
 
@@ -36,7 +36,7 @@ $movies = $result->fetch_all(MYSQLI_ASSOC);
 
     <?php
 
-    foreach ($movies as $movie) {
+    foreach ($movies1 as $movie) {
         echo '<p>' . $movie['title'] . '</p>';
     }
 
