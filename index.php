@@ -7,17 +7,11 @@ require_once 'vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-// Connect to database
-$mysqli = new mysqli(
-    'ostrawebb.se', 
-    $_ENV['DB_USER'], 
-    $_ENV['DB_PASS'],
-    $_ENV['DB_USER']
-);
+require 'functions.php';
 
-// Get all movies
-$result = $mysqli->query("SELECT * FROM movies1");
-$movies1 = $result->fetch_all(MYSQLI_ASSOC);
+$mysqli = connectToMysqli();
+
+
 
 ?>
 
@@ -29,18 +23,23 @@ $movies1 = $result->fetch_all(MYSQLI_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/main.css" rel="stylesheet">
-    <title>Document</title>
+    <title>Klätterhanden</title>
 </head>
 
 <body>
+    <header>
 
-    <?php
+    </header>
 
-    foreach ($movies1 as $movie) {
-        echo '<p>' . $movie['title'] . '</p>';
-    }
 
-    ?>
+
+    <div class = "form-container">
+
+
+
+    </div>
+
+
 
 </body>
 
