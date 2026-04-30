@@ -24,7 +24,6 @@ if ($password != $passwordConfirm) {
     $errors[] = 'Lösenord stämmer inte.';
 }
 
-/* Hanteringen */
 if(count($errors) > 0) {
     $_SESSION['formErrors'] = $errors;
     header('Location: index.php');

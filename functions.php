@@ -4,20 +4,45 @@ require_once 'vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-function connectToDb(){
 
-$db = new mysqli(
-    'ostrawebb.se', 
-    $_ENV['DB_USER'], 
-    $_ENV['DB_PASS'],
-    $_ENV['DB_USER']
-);
-return $db;
+function connectToDb(): mysqli {
+    $dbUser = $_ENV['DB_USER'] ?? '';
+    $dbPass = $_ENV['DB_PASS'] ?? '';
+    $dbName = $_ENV['DB_NAME'] ?? '';
+
+    if ($dbUser === '' || $dbPass === '' || $dbName === '') {
+        throw new RuntimeException('Missing DB configuration. Check your .env file.');
+    }
+
+    $db = new mysqli(
+        'ostrawebb.se',
+        $dbUser,
+        $dbPass,
+        $dbName
+    );
+
+    if ($db->connect_error) {
+        throw new RuntimeException('Database connection failed: ' . $db->connect_error);
+    }
+
+    return $db;
 
 }
 
+
+function getUserById($db, $userId) {
+    $statement = $db->prepare("SELECT * FROM blogg_users WHERE id = ?");
+    $statement->bind_param('i', $userId);
+    $statement->execute();
+    $result = $statement->get_result();
+    $user = $result->fetch_assoc();
+    return $user;
+}
+
+
+
 function getUserByUsername($db, $username) {
-    $statement = $db->prepare("SELECT * FROM site_users WHERE username = ?");
+    $statement = $db->prepare("SELECT * FROM blogg_users WHERE username = ?");
     $statement->bind_param('s', $username);
     $statement->execute();
     $result = $statement->get_result();

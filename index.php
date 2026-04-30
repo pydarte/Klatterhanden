@@ -4,11 +4,6 @@ session_start();
 require_once 'vendor/autoload.php';
 require 'functions.php';
 
-// Load secrets from the file .env
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
-
-
 $db = connectToDb();
 
 
