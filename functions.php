@@ -5,33 +5,20 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 
-function connectToDb(): mysqli {
-    $dbUser = $_ENV['DB_USER'] ?? '';
-    $dbPass = $_ENV['DB_PASS'] ?? '';
-    $dbName = $_ENV['DB_NAME'] ?? '';
+function connectToDb() {
+    $dbHost = 'ostrawebb.se';
+    $dbUser = 'wsp2526_davbuw';
+    $dbPassword = 'bixyjiti34';
+    $dbDatabase = 'wsp2526_davbuw';
+    $db = new mysqli($dbHost, $dbUser, $dbPassword, $dbDatabase);
 
-    if ($dbUser === '' || $dbPass === '' || $dbName === '') {
-        throw new RuntimeException('Missing DB configuration. Check your .env file.');
-    }
-
-    $db = new mysqli(
-        'ostrawebb.se',
-        $dbUser,
-        $dbPass,
-        $dbName
-    );
-
-    if ($db->connect_error) {
-        throw new RuntimeException('Database connection failed: ' . $db->connect_error);
-    }
 
     return $db;
-
 }
 
 
 function getUserById($db, $userId) {
-    $statement = $db->prepare("SELECT * FROM blogg_users WHERE id = ?");
+    $statement = $db->prepare("SELECT * FROM site_users WHERE id = ?");
     $statement->bind_param('i', $userId);
     $statement->execute();
     $result = $statement->get_result();
@@ -40,9 +27,8 @@ function getUserById($db, $userId) {
 }
 
 
-
 function getUserByUsername($db, $username) {
-    $statement = $db->prepare("SELECT * FROM blogg_users WHERE username = ?");
+    $statement = $db->prepare("SELECT * FROM site_users WHERE username = ?");
     $statement->bind_param('s', $username);
     $statement->execute();
     $result = $statement->get_result();
@@ -70,7 +56,7 @@ function login($username, $password) {
 
     $_SESSION['loggedIn'] = TRUE;
     $_SESSION['userId'] = $user['id'];
-    
+    $_SESSION['username'] = $user['username'];
     return true; 
 }
 

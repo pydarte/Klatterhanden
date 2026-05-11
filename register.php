@@ -16,6 +16,10 @@ if (strlen($username) < 3) {
     $errors[] = 'Användarnamn för kort.';
 }
 
+if (strlen($username) > 16) {
+    $errors[] = 'Användarnamn för långt.';
+}
+
 if (strlen($password) < 4) {
     $errors[] = 'Lösenord för kort.';
 }
@@ -33,7 +37,7 @@ if(count($errors) > 0) {
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 
-$statement = $db->prepare("INSERT INTO blogg_users (username, password, email) VALUES (?, ?, ?)");
+$statement = $db->prepare("INSERT INTO site_users (username, password, email) VALUES (?, ?, ?)");
 $statement->bind_param('sss', $username, $hashedPassword, $email);
 $statement->execute();
 
