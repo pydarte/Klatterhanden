@@ -16,3 +16,19 @@ if ( ! isset($_SESSION['loggedIn']) || ! $_SESSION['loggedIn']) {
 
 
 ?>
+
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <title>Klätterhanden</title>
+
+</head>
+<body>
+
+<header> <h2>Klätterhanden</h2> </header>
+
+
+</body>
+</html>

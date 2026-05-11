@@ -1,6 +1,5 @@
 <?php
 session_start();
-// Load installed packages
 require_once 'vendor/autoload.php';
 require 'functions.php';
 
@@ -18,13 +17,19 @@ $db = connectToDb();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Klätterhanden är en klätterklubb i Handen, söder om Stockholm. Vi har klättring för alla, både inomhus och utomhus. Välkommen att bli medlem!">
-    <link href="css/main.css" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="pictures/logo.png">
     <title>Klätterhanden</title>
 </head>
 
 <body>
     <header>
+
+    <h1>Välkommen till Klätterhanden!</h1>
+    <h3>
+    Stockholms nyaste klätterklubb! vi försöker skapa fler möjligheter för klättrare av alla nivåer. Här kan man hitta en klättergrupp i alla åldrar, 
+    för både inomhus och utomhus klättring. Handla bra klätterredskap och även chatta med andra klättrare. Välkommen att bli medlem!
+    </h3>
 
     </header>
 
