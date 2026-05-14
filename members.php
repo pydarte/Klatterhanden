@@ -23,12 +23,21 @@ if ( ! isset($_SESSION['loggedIn']) || ! $_SESSION['loggedIn']) {
 <head>
     <meta charset="UTF-8">
     <title>Klätterhanden</title>
-
+    <link href="css/header-footer.css" rel="stylesheet">
 </head>
 <body>
 
-<header> <h2>Klätterhanden</h2> </header>
+<header>
+    <div class="header-inner">
+        <h2>Klätterhanden</h2>
+        <nav>
+            <a href="members.php" class="active">Medlemmar</a>
+            <a href="climberforum.php">Klätterforum</a>
+        </nav>
+    </div>
+</header>
 
+<footer></footer>
 
 </body>
 </html>

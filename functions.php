@@ -61,6 +61,25 @@ function login($username, $password) {
 }
 
 
+function createPost($db, $title, $user_id, $content) {
+    $createdAt = date('Y-m-d H:i:s'); 
 
+    $statement = $db->prepare("INSERT INTO forumpost (user_id, title, content, created_at) VALUES (?, ?, ?, ?)"); 
+
+    $statement->bind_param('isss', $user_id, $title, $content, $createdAt);
+    
+    return $statement->execute(); 
+}
+
+function getLatestPosts($db) {
+
+    $sql = "SELECT forumpost.*, site_users.username 
+            FROM forumpost 
+            JOIN site_users ON forumpost.user_id = site_users.id 
+            ORDER BY created_at DESC LIMIT 10";
+            
+    $result = $db->query($sql);
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
 
 ?>

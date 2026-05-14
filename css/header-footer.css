@@ -1,0 +1,100 @@
+/* Shared header and footer styles for members.php and climberforum.php */
+footer {
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+header {
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    background: #4f46e5;
+    color: #ffffff;
+    border-radius: 0;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.14);
+    padding: 16px 24px;
+}
+
+header .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header h2 {
+    margin: 0;
+    font-size: 1.95rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+header nav {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+header nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px 14px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+header nav a:hover,
+header nav a:focus {
+    background-color: rgba(255, 255, 255, 0.16);
+}
+
+header nav a.active {
+    background-color: rgba(255, 255, 255, 0.22);
+}
+
+footer {
+    padding: 16px 24px;
+    background: #f8fafc;
+    color: #475569;
+    border-radius: 0;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer a {
+    color: #2563eb;
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(37, 99, 235, 0.75);
+}
+
+footer a:hover,
+footer a:focus {
+    color: #1d4ed8;
+}
+
+@media (max-width: 768px) {
+    header,
+    footer {
+        padding: 18px 16px;
+    }
+
+    header h2 {
+        font-size: 1.6rem;
+    }
+}
