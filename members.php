@@ -37,7 +37,15 @@ if ( ! isset($_SESSION['loggedIn']) || ! $_SESSION['loggedIn']) {
     </div>
 </header>
 
-<footer></footer>
+<footer>
+    <div class="footer-inner">
+        <p>&copy; 2026 David Buwaj</p>
+        <nav>
+            <a href="members.php" class="active">Medlemmar</a>
+            <a href="climberforum.php">Klätterforum</a>
+        </nav>
+    </div>
+</footer>
 
 </body>
 </html>

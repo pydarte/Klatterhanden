@@ -76,25 +76,61 @@ footer {
     font-size: 0.95rem;
 }
 
-html,
-body {
-    margin: 0;
-    padding: 0;
+footer .footer-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
 }
 
 footer p {
     margin: 0;
+    font-weight: 500;
 }
 
-footer a {
+footer nav {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+
+footer nav a {
     color: #2563eb;
     text-decoration: none;
-    border-bottom: 1px dashed rgba(37, 99, 235, 0.75);
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-footer a:hover,
-footer a:focus {
+footer nav a:hover,
+footer nav a:focus {
+    background-color: rgba(37, 99, 235, 0.1);
     color: #1d4ed8;
+}
+
+footer nav a.active {
+    background-color: rgba(37, 99, 235, 0.15);
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    flex: 1;
 }
 
 @media (max-width: 768px) {

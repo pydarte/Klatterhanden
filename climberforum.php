@@ -21,6 +21,7 @@ if ( ! isset($_SESSION['loggedIn']) || ! $_SESSION['loggedIn']) {
     <meta charset="UTF-8">
     <title>Klätterforum</title>
     <link href="css/header-footer.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
 </head>
 <body>
 
@@ -74,7 +75,15 @@ if ( ! isset($_SESSION['loggedIn']) || ! $_SESSION['loggedIn']) {
     </div>
 </div>
 
-<footer></footer>
+<footer>
+    <div class="footer-inner">
+        <p>&copy; 2026 David Buwaj</p>
+        <nav>
+            <a href="members.php">Medlemmar</a>
+            <a href="climberforum.php" class="active">Klätterforum</a>
+        </nav>
+    </div>
+</footer>
 
 </body>
 </html>
