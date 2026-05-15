@@ -13,7 +13,7 @@ header {
     color: #ffffff;
     border-radius: 0;
     box-shadow: 0 10px 24px rgba(15, 23, 42, 0.14);
-    padding: 16px 24px;
+    padding: 12px 24px;
 }
 
 header .header-inner {
@@ -24,6 +24,15 @@ header .header-inner {
     max-width: 1200px;
     margin: 0 auto;
 }
+
+header .header-logo {
+    max-height: 80px;
+    max-width: 240px;
+    width: auto;
+    height: auto;
+    display: block;
+}
+
 
 header h2 {
     margin: 0;

@@ -29,7 +29,7 @@ if ( ! isset($_SESSION['loggedIn']) || ! $_SESSION['loggedIn']) {
 
 <header>
     <div class="header-inner">
-        <h2>Klätterhanden</h2>
+        <img class="header-logo" src="pictures/klatterlogo.png" alt="Klätterhanden logotyp">
         <nav>
             <a href="members.php" class="active">Medlemmar</a>
             <a href="climberforum.php">Klätterforum</a>
