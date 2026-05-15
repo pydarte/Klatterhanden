@@ -64,6 +64,11 @@ if ( ! isset($_SESSION['loggedIn']) || ! $_SESSION['loggedIn']) {
             Skrivet av: <strong><?php echo htmlspecialchars($post['username']); ?></strong> 
             | Publicerad: <?php echo htmlspecialchars($post['created_at']); ?>
         </small>
+
+        <?php 
+        $postId = $post['id'];
+        include 'comment.php';
+        ?>
     </div>
 <?php endforeach; ?>
     </div>

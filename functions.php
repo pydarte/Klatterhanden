@@ -82,4 +82,25 @@ function getLatestPosts($db) {
     return $result->fetch_all(MYSQLI_ASSOC);
 }
 
+function getComments($db, $postId) {
+    $statement = $db->prepare("SELECT comments.*, site_users.username 
+                              FROM comments 
+                              JOIN site_users ON comments.userid = site_users.id 
+                              WHERE comments.postid = ? 
+                              ORDER BY comments.posted_at ASC");
+    $statement->bind_param('i', $postId);
+    $statement->execute();
+    $result = $statement->get_result();
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
+function saveComment($db, $postId, $userId, $comment, $parentCommentId = null) {
+    $postedAt = date('Y-m-d H:i:s');
+    
+    $statement = $db->prepare("INSERT INTO comments (postid, userid, comment, posted_at, parent_comment_id) VALUES (?, ?, ?, ?, ?)");
+    $statement->bind_param('iissi', $postId, $userId, $comment, $postedAt, $parentCommentId);
+    
+    return $statement->execute();
+}
+
 ?>
