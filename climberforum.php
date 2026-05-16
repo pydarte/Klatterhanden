@@ -31,25 +31,33 @@ if ( ! isset($_SESSION['loggedIn']) || ! $_SESSION['loggedIn']) {
         <nav>
             <a href="members.php">Medlemmar</a>
             <a href="climberforum.php" class="active">Klätterforum</a>
+            <a href="boulderlist.php">Boulderlista</a>
         </nav>
-    </div>
-</header>
-
-<div class="container">
-    <div class="welcome-box">
-        <h1>Välkommen!</h1>
-        <p>Inloggad som: <strong><?php echo htmlspecialchars($user['username']); ?></strong></p>
-        
-        <div class="actions">
-            <form action="write-post.php" method="get">
-                <button type="submit">Skapa nytt inlägg</button>
-            </form>
-
+        <div class="user-info">
+            <span>Inloggad som: <strong><?php echo htmlspecialchars($user['username']); ?></strong></span>
             <form action="logout.php" method="post">
                 <button type="submit" class="logout-btn">Logga ut</button>
             </form>
         </div>
     </div>
+</header>
+
+<div class="container">
+    <section class="hero-banner">
+        <img src="pictures/climbingforum.png" alt="Klätterforum bild">
+        <div class="welcome-box">
+            <h1>Klätterforumet</h1>
+            
+            <p>
+            Här kan du som medlem i Klätterhanden skapa inlägg och diskutera allt som har med klättring att göra. Dela dina erfarenheter, ställ frågor eller ge tips till andra klättrare. Välkommen att delta i diskussionen!
+            </p>
+            <div class="actions">
+                <form action="write-post.php" method="get">
+                    <button type="submit">Skapa nytt inlägg</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
     <hr style="width:100%; border: 0; height: 1px; background: #ccc; margin: 20px 0;">
 

@@ -33,7 +33,14 @@ if ( ! isset($_SESSION['loggedIn']) || ! $_SESSION['loggedIn']) {
         <nav>
             <a href="members.php" class="active">Medlemmar</a>
             <a href="climberforum.php">Klätterforum</a>
+            <a href="boulderlist.php">Boulderlista</a>
         </nav>
+        <div class="user-info">
+            <span>Inloggad som: <strong><?php echo htmlspecialchars($user['username']); ?></strong></span>
+            <form action="logout.php" method="post">
+                <button type="submit" class="logout-btn">Logga ut</button>
+            </form>
+        </div>
     </div>
 </header>
 

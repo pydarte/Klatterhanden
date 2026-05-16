@@ -67,6 +67,42 @@ header nav a.active {
     background-color: rgba(255, 255, 255, 0.22);
 }
 
+header .user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+}
+
+header .user-info span {
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+header .user-info form {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+}
+
+header .user-info .logout-btn {
+    background-color: #dc3545;
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-size: 0.9rem;
+}
+
+header .user-info .logout-btn:hover {
+    background-color: #c82333;
+}
+
 footer {
     padding: 16px 24px;
     background: #f8fafc;
@@ -141,5 +177,25 @@ body {
 
     header h2 {
         font-size: 1.6rem;
+    }
+
+    header .header-inner {
+        flex-wrap: wrap;
+    }
+
+    header .user-info {
+        flex-basis: 100%;
+        justify-content: flex-end;
+        margin-top: 8px;
+        margin-left: 0;
+    }
+
+    header .user-info span {
+        font-size: 0.85rem;
+    }
+
+    header .user-info .logout-btn {
+        padding: 6px 12px;
+        font-size: 0.85rem;
     }
 }
