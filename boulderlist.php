@@ -28,11 +28,12 @@ $result = $db->query("SELECT * FROM bouldertable ORDER BY id ASC");  // Hämtar 
 
 <header>
     <div class="header-inner">
-        <img class="header-logo" src="pictures/klatterlogo.png" alt="Klätterhanden logotyp">
+        <img class="header-logo" src="pictures/klatterhand.png" alt="Klätterhanden logotyp">
         <nav>
             <a href="members.php">Medlemmar</a>
             <a href="climberforum.php">Klätterforum</a>
             <a href="boulderlist.php" class="active">Boulderlista</a>
+            <a href="activities.php">Aktiviteter</a>
         </nav>
         <div class="user-info">
             <span>Inloggad som: <strong><?php echo htmlspecialchars($user['username']); ?></strong></span>

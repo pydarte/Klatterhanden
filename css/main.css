@@ -7,13 +7,13 @@ body {
 .post-container {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
+    margin-bottom: 20px;
 }
 
 .post {
     background: #ffffff;
     border: 1px solid #e0e0e0;
-    border-radius: 8px;
     padding: 35px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease;
@@ -281,6 +281,7 @@ details > form {
     box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
     border-radius: 0;
     overflow: hidden;
+    margin-bottom: 20px;
 }
 
 .boulder-table th,
@@ -307,6 +308,93 @@ details > form {
     max-width: 320px;
     word-wrap: break-word;
 }
+
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.activity-card {
+    background: #ffffff;
+    padding: 16px 20px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease;
+}
+
+.activity-card:hover {
+    transform: translateY(-3px);
+}
+
+.activity-card h2 {
+    margin: 0 0 8px 0;
+    font-size: 1.3rem;
+    color: #000000;
+}
+
+.activity-meta {
+    margin: 0 0 10px 0;
+    font-size: 0.95rem;
+    color: #64748b;
+}
+
+.activity-desc {
+    margin: 0;
+    color: #334155;
+    line-height: 1.4;
+}
+
+.activity-form {
+    background: #f8fafc;
+    padding: 16px;
+    margin-bottom: 20px;
+}
+
+.activity-form input,
+.activity-form textarea {
+    width: 100%;
+    margin: 6px 0;
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+}
+
+.activity-form button {
+    background: #4f46e5;
+    color: white;
+    padding: 10px 14px;
+    border: none;
+    cursor: pointer;
+}
+
+.activity-form button:hover {
+    background: #4338ca;
+}
+
+.delete-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.delete-btn:hover {
+    background: #b02a37;
+}
+
+.activity-list form {
+    background: white;
+    padding: 0;
+    border-radius: 0;
+    border-left: 0;
+}
+
+
+
 
 /* Responsive design */
 

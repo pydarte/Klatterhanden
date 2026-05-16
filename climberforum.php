@@ -27,11 +27,12 @@ if ( ! isset($_SESSION['loggedIn']) || ! $_SESSION['loggedIn']) {
 
 <header>
     <div class="header-inner">
-        <img class="header-logo" src="pictures/klatterlogo.png" alt="Klätterhanden logotyp">
+        <img class="header-logo" src="pictures/klatterhand.png" alt="Klätterhanden logotyp"> <!-- // onclick="window.location='index.html';" -->
         <nav>
             <a href="members.php">Medlemmar</a>
             <a href="climberforum.php" class="active">Klätterforum</a>
             <a href="boulderlist.php">Boulderlista</a>
+            <a href="activities.php">Aktiviteter</a>
         </nav>
         <div class="user-info">
             <span>Inloggad som: <strong><?php echo htmlspecialchars($user['username']); ?></strong></span>
@@ -78,6 +79,15 @@ if ( ! isset($_SESSION['loggedIn']) || ! $_SESSION['loggedIn']) {
         $postId = $post['id'];
         include 'comment.php';
         ?>
+
+        <?php if ($_SESSION['username'] === 'admin') { ?>
+            <form method="post" action="delete-post.php" style="margin-top:10px;">
+                <input type="hidden" name="postid" value="<?php echo $post['id']; ?>">
+                <button type="submit" class="delete-btn">Radera inlägg</button>
+            </form>
+        <?php } ?>
+
+        
     </div>
 <?php endforeach; ?>
     </div>
@@ -89,6 +99,8 @@ if ( ! isset($_SESSION['loggedIn']) || ! $_SESSION['loggedIn']) {
         <nav>
             <a href="members.php">Medlemmar</a>
             <a href="climberforum.php" class="active">Klätterforum</a>
+            <a href="boulderlist.php">Boulderlista</a>
+            <a href="activities.php">Aktiviteter</a>
         </nav>
     </div>
 </footer>

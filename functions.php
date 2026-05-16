@@ -103,4 +103,6 @@ function saveComment($db, $postId, $userId, $comment, $parentCommentId = null) {
     return $statement->execute();
 }
 
+
+
 ?>
