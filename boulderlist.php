@@ -1,8 +1,8 @@
 <?php
-require 'functions.php';  // Inkluderar funktionsfilen med alla databasfunktioner
+require 'functions.php'; 
 
-session_start(); // Startar en ny session
-$db = connectToDb();  // Skapar databasanslutning
+session_start(); 
+$db = connectToDb();  
 
 if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']) {
     $userId = $_SESSION['userId'];
@@ -10,7 +10,7 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']) {
 }
 
 $db->set_charset('utf8');
-$result = $db->query("SELECT * FROM bouldertable ORDER BY id ASC");  // Hämtar alla filmer, sorterade efter ID i stigande ordning
+$result = $db->query("SELECT * FROM bouldertable ORDER BY id ASC");
 
 
 ?>
@@ -23,6 +23,7 @@ $result = $db->query("SELECT * FROM bouldertable ORDER BY id ASC");  // Hämtar 
     <title>The boulder list</title>
     <link href="css/header-footer.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="pictures/klatterhand.png">
 </head>
 <body>
 
@@ -36,7 +37,7 @@ $result = $db->query("SELECT * FROM bouldertable ORDER BY id ASC");  // Hämtar 
             <a href="activities.php">Aktiviteter</a>
         </nav>
         <div class="user-info">
-            <span>Inloggad som: <strong><?php echo htmlspecialchars($user['username']); ?></strong></span>
+            Inloggad som: <strong><?php echo htmlspecialchars($user['username']); ?></strong>
             <form action="logout.php" method="post">
                 <button type="submit" class="logout-btn">Logga ut</button>
             </form>
@@ -46,7 +47,7 @@ $result = $db->query("SELECT * FROM bouldertable ORDER BY id ASC");  // Hämtar 
 
 <div class="container">
     <section class="hero-banner">
-        <img src="pictures/boulderlista.png" alt="Boulderlista bild">
+        <img src="pictures/boulderimg.png" alt="Boulderlista bild">
         <div class="welcome-box">
             <h1>Boulderlista</h1>
             <p><strong>Lista över några av dem svåraste boulders i Sverige. Kommentarer är skrivna av olika medlemmar.</strong></p>

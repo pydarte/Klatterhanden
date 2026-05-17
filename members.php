@@ -36,7 +36,7 @@ if ( ! isset($_SESSION['loggedIn']) || ! $_SESSION['loggedIn']) {
             <a href="boulderlist.php">Boulderlista</a>
         </nav>
         <div class="user-info">
-            <span>Inloggad som: <strong><?php echo htmlspecialchars($user['username']); ?></strong></span>
+            Inloggad som: <strong><?php echo htmlspecialchars($user['username']); ?></strong>
             <form action="logout.php" method="post">
                 <button type="submit" class="logout-btn">Logga ut</button>
             </form>

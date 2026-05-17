@@ -16,9 +16,9 @@ $db = connectToDb();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Klätterhanden är en klätterklubb i Handen, söder om Stockholm. Vi har klättring för alla, både inomhus och utomhus. Välkommen att bli medlem!">
+    <meta name="description" content="Klätterhanden är en klätterklubb. Vi har klättring för alla, både inomhus och utomhus. Välkommen att bli medlem!">
     <link href="css/login.css" rel="stylesheet">
-    <link rel="icon" type="image/png" href="pictures/logo.png">
+    <link rel="icon" type="image/png" href="pictures/klatterhand.png">
     <title>Klätterhanden</title>
 </head>
 
@@ -28,7 +28,7 @@ $db = connectToDb();
     <h1>Välkommen till Klätterhanden!</h1>
     <h3>
     Stockholms nyaste klätterklubb! vi försöker skapa fler möjligheter för klättrare av alla nivåer. Här kan man hitta en klättergrupp i alla åldrar, 
-    för både inomhus och utomhus klättring. Handla bra klätterredskap och även chatta med andra klättrare. Välkommen att bli medlem!
+    för både inomhus och utomhus klättring. Chatta med andra klättrare och följ med på aktiviteter. Välkommen att bli medlem!
     </h3>
 
     </header>

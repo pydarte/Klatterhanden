@@ -5,7 +5,7 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 
-function connectToDb() {
+function connectToDb() { // Se till att du tar bort alla gamla databasuppgifter och ersätter dem med de nya från .env-filen --- IGNORE ---
     $dbHost = 'ostrawebb.se';
     $dbUser = 'wsp2526_davbuw';
     $dbPassword = 'bixyjiti34';
@@ -73,21 +73,15 @@ function createPost($db, $title, $user_id, $content) {
 
 function getLatestPosts($db) {
 
-    $sql = "SELECT forumpost.*, site_users.username 
-            FROM forumpost 
-            JOIN site_users ON forumpost.user_id = site_users.id 
-            ORDER BY created_at DESC LIMIT 10";
-            
+    $sql = "SELECT forumpost.*, site_users.username FROM forumpost JOIN site_users 
+            ON forumpost.user_id = site_users.id ORDER BY created_at DESC LIMIT 50";
     $result = $db->query($sql);
     return $result->fetch_all(MYSQLI_ASSOC);
 }
 
 function getComments($db, $postId) {
-    $statement = $db->prepare("SELECT comments.*, site_users.username 
-                              FROM comments 
-                              JOIN site_users ON comments.userid = site_users.id 
-                              WHERE comments.postid = ? 
-                              ORDER BY comments.posted_at ASC");
+    $statement = $db->prepare("SELECT comments.*, site_users.username FROM comments JOIN site_users ON comments.userid = site_users.id 
+                            WHERE comments.postid = ? ORDER BY comments.posted_at ASC");
     $statement->bind_param('i', $postId);
     $statement->execute();
     $result = $statement->get_result();

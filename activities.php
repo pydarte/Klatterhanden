@@ -22,6 +22,7 @@ $result = $db->query("SELECT * FROM activities ORDER BY date ASC");
     <title>Aktiviteter</title>
     <link href="css/header-footer.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="pictures/klatterhand.png">
 </head>
 
 <body>
@@ -38,7 +39,7 @@ $result = $db->query("SELECT * FROM activities ORDER BY date ASC");
         </nav>
 
         <div class="user-info">
-            <span>Inloggad som: <strong><?php echo htmlspecialchars($user['username']); ?></strong></span>
+            Inloggad som: <strong><?php echo htmlspecialchars($user['username']); ?></strong>
             <form action="logout.php" method="post">
                 <button type="submit" class="logout-btn">Logga ut</button>
             </form>
@@ -52,7 +53,7 @@ $result = $db->query("SELECT * FROM activities ORDER BY date ASC");
         <img src="pictures/climbingactivity.jpg" alt="Klubbaktiviteter bild">
         <div class="welcome-box">
             <h1>Klubb aktiviteter</h1>
-            <p><strong>Se våra kommande aktiviteter och anmäl dig!</strong></p>
+            <p><strong>Se våra kommande aktiviteter och dyk upp på aktiviteterna!</strong></p>
         </div>
     </section>
 

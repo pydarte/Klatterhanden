@@ -22,6 +22,7 @@ if ( ! isset($_SESSION['loggedIn']) || ! $_SESSION['loggedIn']) {
     <title>Klätterforum</title>
     <link href="css/header-footer.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="pictures/klatterhand.png">
 </head>
 <body>
 
@@ -35,7 +36,7 @@ if ( ! isset($_SESSION['loggedIn']) || ! $_SESSION['loggedIn']) {
             <a href="activities.php">Aktiviteter</a>
         </nav>
         <div class="user-info">
-            <span>Inloggad som: <strong><?php echo htmlspecialchars($user['username']); ?></strong></span>
+            Inloggad som: <strong><?php echo htmlspecialchars($user['username']); ?></strong>
             <form action="logout.php" method="post">
                 <button type="submit" class="logout-btn">Logga ut</button>
             </form>
@@ -52,17 +53,18 @@ if ( ! isset($_SESSION['loggedIn']) || ! $_SESSION['loggedIn']) {
             <p>
             Här kan du som medlem i Klätterhanden skapa inlägg och diskutera allt som har med klättring att göra. Dela dina erfarenheter, ställ frågor eller ge tips till andra klättrare. Välkommen att delta i diskussionen!
             </p>
-            <div class="actions">
-                <form action="write-post.php" method="get">
-                    <button type="submit">Skapa nytt inlägg</button>
-                </form>
-            </div>
+
         </div>
     </section>
 
     <hr style="width:100%; border: 0; height: 1px; background: #ccc; margin: 20px 0;">
 
     <h2>Senaste inläggen</h2>
+    <div class="actions">
+        <form action="write-post.php" method="get">
+            <button type="submit">Skapa nytt inlägg</button>
+        </form>
+    </div>
 
     <div class="post-container">
     <?php foreach ($latestPosts as $post): ?>
