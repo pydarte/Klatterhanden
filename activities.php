@@ -11,7 +11,7 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']) {
 
 $db->set_charset('utf8');
 
-$result = $db->query("SELECT * FROM activities ORDER BY date ASC");
+$result = getActivities($db);
 ?>
 
 <!DOCTYPE html>
@@ -29,10 +29,10 @@ $result = $db->query("SELECT * FROM activities ORDER BY date ASC");
 
 <header>
     <div class="header-inner">
-        <img class="header-logo" src="pictures/klatterhand.png" alt="Klätterlogga">
+        <img class="header-logo" onclick="window.location='home.php';" src="pictures/klatterhand.png" alt="Klätterlogga">
 
         <nav>
-            <a href="members.php">Medlemmar</a>
+            <a href="home.php">Home</a>
             <a href="climberforum.php">Klätterforum</a>
             <a href="boulderlist.php">Boulderlista</a>
             <a href="activities.php" class="active">Aktiviteter</a>
@@ -57,7 +57,7 @@ $result = $db->query("SELECT * FROM activities ORDER BY date ASC");
         </div>
     </section>
 
-<?php if ($_SESSION['username'] === 'admin') { ?>
+<?php if (isset($_SESSION['username']) && $_SESSION['username'] === 'admin') { ?>
 
 <div class="activity-form">
     <h3>Lägg till aktivitet</h3>
@@ -110,7 +110,7 @@ $result = $db->query("SELECT * FROM activities ORDER BY date ASC");
     <div class="footer-inner">
         <p>&copy; 2026 David Buwaj</p>
         <nav>
-            <a href="members.php">Medlemmar</a>
+            <a href="home.php">Home</a>
             <a href="climberforum.php">Klätterforum</a>
             <a href="boulderlist.php">Boulderlista</a>
             <a href="activities.php" class="active">Aktiviteter</a>

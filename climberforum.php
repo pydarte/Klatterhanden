@@ -11,7 +11,7 @@ if ( ! isset($_SESSION['loggedIn']) || ! $_SESSION['loggedIn']) {
     $userId = $_SESSION['userId'];
     $user = getUserById($db, $userId);
 
-    $latestPosts = getLatestPosts($db);
+    $latestPosts = getLatestPosts($db, 50);
 ?>
 
 
@@ -28,9 +28,9 @@ if ( ! isset($_SESSION['loggedIn']) || ! $_SESSION['loggedIn']) {
 
 <header>
     <div class="header-inner">
-        <img class="header-logo" src="pictures/klatterhand.png" alt="Klätterhanden logotyp"> <!-- // onclick="window.location='index.html';" -->
+        <img class="header-logo" onclick="window.location='home.php';" src="pictures/klatterhand.png" alt="Klätterhanden logotyp">
         <nav>
-            <a href="members.php">Medlemmar</a>
+            <a href="home.php">Home</a>
             <a href="climberforum.php" class="active">Klätterforum</a>
             <a href="boulderlist.php">Boulderlista</a>
             <a href="activities.php">Aktiviteter</a>
@@ -99,7 +99,7 @@ if ( ! isset($_SESSION['loggedIn']) || ! $_SESSION['loggedIn']) {
     <div class="footer-inner">
         <p>&copy; 2026 David Buwaj</p>
         <nav>
-            <a href="members.php">Medlemmar</a>
+            <a href="home.php">Home</a>
             <a href="climberforum.php" class="active">Klätterforum</a>
             <a href="boulderlist.php">Boulderlista</a>
             <a href="activities.php">Aktiviteter</a>

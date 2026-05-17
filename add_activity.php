@@ -14,10 +14,10 @@ $date = $_POST['date'];
 $location = $_POST['location'];
 $description = $_POST['description'];
 
-$stmt = $db->prepare("INSERT INTO activities (title, date, location, description) VALUES (?, ?, ?, ?)");
-$stmt->bind_param("ssss", $title, $date, $location, $description);
+$statement = $db->prepare("INSERT INTO activities (title, date, location, description) VALUES (?, ?, ?, ?)");
+$statement->bind_param("ssss", $title, $date, $location, $description);
 
-$stmt->execute();
+$statement->execute();
 
 header("Location: activities.php");
 exit();

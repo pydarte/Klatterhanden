@@ -29,9 +29,9 @@ $result = $db->query("SELECT * FROM bouldertable ORDER BY id ASC");
 
 <header>
     <div class="header-inner">
-        <img class="header-logo" src="pictures/klatterhand.png" alt="Klätterhanden logotyp">
+        <img class="header-logo" onclick="window.location='home.php';" src="pictures/klatterhand.png" alt="Klätterhanden logotyp">
         <nav>
-            <a href="members.php">Medlemmar</a>
+            <a href="home.php">Home</a>
             <a href="climberforum.php">Klätterforum</a>
             <a href="boulderlist.php" class="active">Boulderlista</a>
             <a href="activities.php">Aktiviteter</a>
@@ -54,6 +54,12 @@ $result = $db->query("SELECT * FROM bouldertable ORDER BY id ASC");
         </div>
     </section>
 
+    <?php if (isset($_SESSION['username']) && $_SESSION['username'] === 'admin') { ?>
+        <div class="actions">
+            <a href="add-boulder.php" class="admin-btn">Add boulder</a>
+        </div>
+    <?php } ?>
+
     <div class="table-wrapper">
         <table class="boulder-table">
             <thead>
@@ -68,9 +74,8 @@ $result = $db->query("SELECT * FROM bouldertable ORDER BY id ASC");
             <tbody>
                 <?php
                 while ($row = $result->fetch_assoc()){
-                    echo '<tr>';
-                    echo '<td>' . htmlspecialchars($row['id']) . '</td>';
-                    echo '<td>' . htmlspecialchars($row['boulder']) . '</td>';
+                    echo '<tr>';echo '<td>' . htmlspecialchars($row['id']) . '</td>';
+                    echo '<td><a href="showboulder.php?id=' . $row['id'] . '">' . htmlspecialchars($row['boulder']) . '</a></td>';
                     echo '<td>' . htmlspecialchars($row['grade']) . '</td>';
                     echo '<td>' . htmlspecialchars($row['area']) . '</td>';
                     echo '<td>' . htmlspecialchars($row['comment']) . '</td>';
@@ -86,7 +91,7 @@ $result = $db->query("SELECT * FROM bouldertable ORDER BY id ASC");
     <div class="footer-inner">
         <p>&copy; 2026 David Buwaj</p>
         <nav>
-            <a href="members.php">Medlemmar</a>
+            <a href="home.php">Home</a>
             <a href="climberforum.php">Klätterforum</a>
             <a href="boulderlist.php" class="active">Boulderlista</a>
         </nav>

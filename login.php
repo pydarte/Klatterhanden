@@ -11,6 +11,6 @@ $user = getUserByUsername($db,$username);
 login($username, $password);
 
 
-header('Location: members.php');
+header('Location: home.php');
 
 ?>

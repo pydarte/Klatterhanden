@@ -11,9 +11,9 @@ $db = connectToDb();
 
 $postId = $_POST['postid'];
 
-$stmt = $db->prepare("DELETE FROM forumpost WHERE id = ?");
-$stmt->bind_param("i", $postId);
-$stmt->execute();
+$statement = $db->prepare("DELETE FROM forumpost WHERE id = ?");
+$statement->bind_param("i", $postId);
+$statement->execute();
 
 header("Location: climberforum.php");
 exit();

@@ -63,18 +63,15 @@ function login($username, $password) {
 
 function createPost($db, $title, $user_id, $content) {
     $createdAt = date('Y-m-d H:i:s'); 
-
     $statement = $db->prepare("INSERT INTO forumpost (user_id, title, content, created_at) VALUES (?, ?, ?, ?)"); 
-
     $statement->bind_param('isss', $user_id, $title, $content, $createdAt);
-    
     return $statement->execute(); 
 }
 
-function getLatestPosts($db) {
+function getLatestPosts($db, $limit = 3) {
 
     $sql = "SELECT forumpost.*, site_users.username FROM forumpost JOIN site_users 
-            ON forumpost.user_id = site_users.id ORDER BY created_at DESC LIMIT 50";
+            ON forumpost.user_id = site_users.id ORDER BY created_at DESC LIMIT " . (int)$limit;
     $result = $db->query($sql);
     return $result->fetch_all(MYSQLI_ASSOC);
 }
@@ -97,6 +94,29 @@ function saveComment($db, $postId, $userId, $comment, $parentCommentId = null) {
     return $statement->execute();
 }
 
+function getBoulder($db, $boulderId) {
+
+    $statement = $db->prepare("SELECT * FROM bouldertable WHERE id = ?");
+    $statement->bind_param('i', $boulderId);
+    $statement->execute();
+    $result = $statement->get_result();
+
+    return $result->fetch_assoc();
+}
+
+function updateBoulder($db, $id, $boulder, $grade, $area, $comment) {
+
+    $statement = $db->prepare("UPDATE bouldertable SET boulder = ?, grade = ?, area = ?, comment = ? WHERE id = ?");
+    $statement->bind_param('ssssi', $boulder, $grade, $area, $comment, $id);
+    $statement->execute();
+}
+
+function getActivities($db) { //Fixa på Home sidan. + Ta bort forearch. lägg till limit i sql frågan. --- IGNORE ---
+
+    $sql = "SELECT * FROM activities ORDER BY date ASC";
+
+    return $db->query($sql);
+}
 
 
 ?>

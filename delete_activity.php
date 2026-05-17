@@ -11,9 +11,9 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
 
 $id = $_POST['id'];
 
-$stmt = $db->prepare("DELETE FROM activities WHERE id = ?");
-$stmt->bind_param("i", $id);
-$stmt->execute();
+$statement = $db->prepare("DELETE FROM activities WHERE id = ?");
+$statement->bind_param("i", $id);
+$statement->execute();
 
 header("Location: activities.php");
 exit();
