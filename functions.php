@@ -104,7 +104,7 @@ function getBoulder($db, $boulderId) {
     return $result->fetch_assoc();
 }
 
-function updateBoulder($db, $id, $boulder, $grade, $area, $comment) {
+function updateBoulder($db, $id, $boulder, $grade, $area, $comment) { //lägg till en ta bort funktion på boulderlistan. --- IGNORE ---
 
     $statement = $db->prepare("UPDATE bouldertable SET boulder = ?, grade = ?, area = ?, comment = ? WHERE id = ?");
     $statement->bind_param('ssssi', $boulder, $grade, $area, $comment, $id);
