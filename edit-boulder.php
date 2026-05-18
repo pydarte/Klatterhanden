@@ -1,21 +1,20 @@
 <?php
-require 'functions.php';
-session_start();
+    require_once 'functions.php';
+    session_start();
 
-$db = connectToDb();
+    requireLogin();
 
-if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
-    header("Location: boulderlist.php");
-    exit();
-}
+    $db = connectToDb();
 
-$id = $_GET['id'];
+    requireAdmin();
 
-$stmt = $db->prepare("SELECT * FROM bouldertable WHERE id = ?");
-$stmt->bind_param("i", $id);
-$stmt->execute();
+    $id = $_GET['id'];
 
-$boulder = $stmt->get_result()->fetch_assoc();
+    $statement = $db->prepare("SELECT * FROM bouldertable WHERE id = ?");
+    $statement->bind_param("i", $id);
+    $statement->execute();
+
+    $boulder = $statement->get_result()->fetch_assoc();
 ?>
 
 <!DOCTYPE html>

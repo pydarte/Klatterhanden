@@ -1,9 +1,9 @@
 <?php
-session_start();
-require_once 'vendor/autoload.php';
-require 'functions.php';
+    session_start();
+    require_once 'vendor/autoload.php';
+    require_once 'functions.php';
 
-$db = connectToDb();
+    $db = connectToDb();
 
 
 

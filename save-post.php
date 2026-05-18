@@ -1,19 +1,22 @@
 <?php
-session_start();
-require 'functions.php';
-
-$db = connectToDb();
+    require_once 'functions.php';
+    session_start();
 
 
-$title = $_POST['title'];
-$content = $_POST['content'];
-$userId = $_SESSION['userId']; 
+    requireLogin();
 
-if (createPost($db, $title, $userId, $content)) {
-    $_SESSION['message'] = "Inlägget är upplagt!";
-} else {
-    $_SESSION['message'] = "Fel: " . $db->error;
-}
+    $db = connectToDb();
 
-header('Location: climberforum.php');
-exit();
+    $userId = $_SESSION['userId']; 
+    $title = $_POST['title'];
+    $content = $_POST['content'];
+
+    if (createPost($db, $title, $userId, $content)) {
+        $_SESSION['message'] = "Inlägget är upplagt!";
+    } else {
+        $_SESSION['message'] = "Fel: " . $db->error;
+    }
+
+    header('Location: climberforum.php');
+    exit();
+?>

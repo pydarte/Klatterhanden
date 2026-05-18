@@ -1,48 +1,19 @@
 <?php
-require 'functions.php';
-session_start();
+    require_once 'functions.php';
+    session_start();
 
-$db = connectToDb();
+    $db = connectToDb();
 
-if ( ! isset($_SESSION['loggedIn']) || ! $_SESSION['loggedIn']) {
-    header('Location: index.php');
-    exit();
-}
+    requireLogin();
+
     $userId = $_SESSION['userId'];
     $user = getUserById($db, $userId);
 
     $latestPosts = getLatestPosts($db, 50);
+
+    require 'includes/header.php';
 ?>
 
-
-<!DOCTYPE html>
-<html lang="sv">
-<head>
-    <meta charset="UTF-8">
-    <title>Klätterforum</title>
-    <link href="css/header-footer.css" rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet">
-    <link rel="icon" type="image/png" href="pictures/klatterhand.png">
-</head>
-<body>
-
-<header>
-    <div class="header-inner">
-        <img class="header-logo" onclick="window.location='home.php';" src="pictures/klatterhand.png" alt="Klätterhanden logotyp">
-        <nav>
-            <a href="home.php">Home</a>
-            <a href="climberforum.php" class="active">Klätterforum</a>
-            <a href="boulderlist.php">Boulderlista</a>
-            <a href="activities.php">Aktiviteter</a>
-        </nav>
-        <div class="user-info">
-            Inloggad som: <strong><?php echo htmlspecialchars($user['username']); ?></strong>
-            <form action="logout.php" method="post">
-                <button type="submit" class="logout-btn">Logga ut</button>
-            </form>
-        </div>
-    </div>
-</header>
 
 <div class="container">
     <section class="hero-banner">
@@ -95,17 +66,6 @@ if ( ! isset($_SESSION['loggedIn']) || ! $_SESSION['loggedIn']) {
     </div>
 </div>
 
-<footer>
-    <div class="footer-inner">
-        <p>&copy; 2026 David Buwaj</p>
-        <nav>
-            <a href="home.php">Home</a>
-            <a href="climberforum.php" class="active">Klätterforum</a>
-            <a href="boulderlist.php">Boulderlista</a>
-            <a href="activities.php">Aktiviteter</a>
-        </nav>
-    </div>
-</footer>
-
-</body>
-</html>
+<?php 
+    require 'includes/footer.php'; 
+?>

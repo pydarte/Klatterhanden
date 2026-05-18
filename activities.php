@@ -1,51 +1,20 @@
 <?php
-require 'functions.php';
-session_start();
+    require_once 'functions.php';
 
-$db = connectToDb();
+    session_start();
 
-if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']) {
-    $userId = $_SESSION['userId'];
-    $user = getUserById($db, $userId);
-}
+    requireLogin();
 
-$db->set_charset('utf8');
+    $db = connectToDb();
+    $user = getUserById($db, $_SESSION['userId']);
 
-$result = getActivities($db);
+    $db->set_charset('utf8');
+
+    $result = getActivities($db);
+
+    require 'includes/header.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="sv">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aktiviteter</title>
-    <link href="css/header-footer.css" rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet">
-    <link rel="icon" type="image/png" href="pictures/klatterhand.png">
-</head>
-
-<body>
-
-<header>
-    <div class="header-inner">
-        <img class="header-logo" onclick="window.location='home.php';" src="pictures/klatterhand.png" alt="Klätterlogga">
-
-        <nav>
-            <a href="home.php">Home</a>
-            <a href="climberforum.php">Klätterforum</a>
-            <a href="boulderlist.php">Boulderlista</a>
-            <a href="activities.php" class="active">Aktiviteter</a>
-        </nav>
-
-        <div class="user-info">
-            Inloggad som: <strong><?php echo htmlspecialchars($user['username']); ?></strong>
-            <form action="logout.php" method="post">
-                <button type="submit" class="logout-btn">Logga ut</button>
-            </form>
-        </div>
-    </div>
-</header>
 
 <div class="container">
 
@@ -106,17 +75,6 @@ $result = getActivities($db);
 
 </div>
 
-<footer>
-    <div class="footer-inner">
-        <p>&copy; 2026 David Buwaj</p>
-        <nav>
-            <a href="home.php">Home</a>
-            <a href="climberforum.php">Klätterforum</a>
-            <a href="boulderlist.php">Boulderlista</a>
-            <a href="activities.php" class="active">Aktiviteter</a>
-        </nav>
-    </div>
-</footer>
-
-</body>
-</html>
+<?php 
+    require 'includes/footer.php'; 
+?>

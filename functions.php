@@ -7,11 +7,10 @@ $dotenv->load();
 
 function connectToDb() { // Se till att du tar bort alla gamla databasuppgifter och ersätter dem med de nya från .env-filen --- IGNORE ---
     $dbHost = 'ostrawebb.se';
-    $dbUser = 'wsp2526_davbuw';
-    $dbPassword = 'bixyjiti34';
-    $dbDatabase = 'wsp2526_davbuw';
+    $dbUser = $_ENV['DB_USER'];
+    $dbPassword = $_ENV['DB_PASS'];
+    $dbDatabase = $_ENV['DB_NAME'];
     $db = new mysqli($dbHost, $dbUser, $dbPassword, $dbDatabase);
-
 
     return $db;
 }
@@ -60,6 +59,19 @@ function login($username, $password) {
     return true; 
 }
 
+function requireLogin() {
+    if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] !== true) {
+        header("Location: index.php");
+        exit;
+    }
+}
+
+function requireAdmin() {
+    if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'admin') {
+        header("Location: home.php");
+        exit;
+    }
+}
 
 function createPost($db, $title, $user_id, $content) {
     $createdAt = date('Y-m-d H:i:s'); 

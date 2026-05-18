@@ -1,20 +1,17 @@
 <?php
-require 'functions.php';
+    require_once 'functions.php';
 
-session_start();
+    session_start();
 
-$db = connectToDb();
+    $db = connectToDb();
 
-if (!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn']) {
-    header('Location: index.php');
-    exit();
-}
+    requireLogin();
 
-$user = getUserById($db, $_SESSION['userId']);
+    $user = getUserById($db, $_SESSION['userId']);
 
-$boulderId = $_GET['id'];
+    $boulderId = $_GET['id'];
 
-$boulder = getBoulder($db, $boulderId);
+    $boulder = getBoulder($db, $boulderId);
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +22,7 @@ $boulder = getBoulder($db, $boulderId);
 
     <link href="css/header-footer.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="pictures/klatterhand.png">
 </head>
 
 <body>

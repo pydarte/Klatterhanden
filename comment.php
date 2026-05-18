@@ -1,10 +1,12 @@
 <?php
+    require_once 'functions.php';
+    requireLogin();
 
-if (!isset($postId)) {
-    exit();
-}
-$db = connectToDb();
-$comments = getComments($db, $postId);
+    if (!isset($postId)) {
+        exit();
+    }
+    $db = connectToDb();
+    $comments = getComments($db, $postId);
 
 ?>
 

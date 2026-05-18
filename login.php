@@ -1,16 +1,21 @@
 <?php
 
-session_start();
-require_once('functions.php');
-$db = connectToDb();
+    session_start();
+    require_once('functions.php');
 
-$username = $_POST['username'];
-$password = $_POST['password'];
-$user = getUserByUsername($db,$username);
+    if (empty($_POST['username']) || empty($_POST['password'])) {
+        header('Location: index.php');
+        exit;
+    }
 
-login($username, $password);
+    $db = connectToDb();
+
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    login($username, $password);
 
 
-header('Location: home.php');
-
+    header('Location: home.php');
+    exit;
 ?>

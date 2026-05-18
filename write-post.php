@@ -1,14 +1,11 @@
 <?php
-require 'functions.php';
-session_start();
+    require_once 'functions.php';
+    session_start();
 
-if (!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn']) {
-    header('Location: index.php');
-    exit();
-}
+    requireLogin();
 
-$db = connectToDb();
-$user = getUserById($db, $_SESSION['userId']);
+    $db = connectToDb();
+    $user = getUserById($db, $_SESSION['userId']);
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +16,7 @@ $user = getUserById($db, $_SESSION['userId']);
 
     <link href="css/header-footer.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="pictures/klatterhand.png">
 </head>
 
 <body>
@@ -32,7 +30,6 @@ $user = getUserById($db, $_SESSION['userId']);
 
         <form action="save-post.php" method="post" class="create-post-form">
 
-            <input type="hidden" name="user_id" value="<?php echo $_SESSION['userId']; ?>">
 
             <p>
                 <label for="title">Titel</label><br>
