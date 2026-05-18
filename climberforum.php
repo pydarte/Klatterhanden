@@ -3,12 +3,10 @@
     session_start();
 
     $db = connectToDb();
-
     requireLogin();
 
     $userId = $_SESSION['userId'];
     $user = getUserById($db, $userId);
-
     $latestPosts = getLatestPosts($db, 50);
 
     require 'includes/header.php';
@@ -27,8 +25,6 @@
 
         </div>
     </section>
-
-    <hr style="width:100%; border: 0; height: 1px; background: #ccc; margin: 20px 0;">
 
     <h2>Senaste inläggen</h2>
     <div class="actions">
@@ -49,8 +45,8 @@
         </small>
 
         <?php 
-        $postId = $post['id'];
-        include 'comment.php';
+            $postId = $post['id'];
+            include 'comment.php';
         ?>
 
         <?php if ($_SESSION['username'] === 'admin') { ?>
@@ -62,7 +58,7 @@
 
         
     </div>
-<?php endforeach; ?>
+        <?php endforeach; ?>
     </div>
 </div>
 

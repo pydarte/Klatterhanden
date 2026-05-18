@@ -1,10 +1,8 @@
 <?php
     require_once 'functions.php';
-
     session_start();
-
+    
     requireLogin();
-
     $db = connectToDb();
     $user = getUserById($db, $_SESSION['userId']);
 
@@ -24,7 +22,7 @@
         </div>
     </section>
 
-    <?php if (isset($_SESSION['username']) && $_SESSION['username'] === 'admin') { ?>
+    <?php if (isset($_SESSION['username']) && $_SESSION['username'] === 'admin') { /*Gör att bara admin kan see knappen.*/ ?> 
         <div class="actions">
             <a href="add-boulder.php" class="admin-btn">Add boulder</a>
         </div>
@@ -43,7 +41,7 @@
             </thead>
             <tbody>
                 <?php
-                while ($row = $result->fetch_assoc()){
+                while ($row = $result->fetch_assoc()){ //Loopar igenom alla rader i resultatet och skriver ut varje boulder som en tabellrad.
                     echo '<tr>';echo '<td>' . htmlspecialchars($row['id']) . '</td>';
                     echo '<td><a href="showboulder.php?id=' . $row['id'] . '">' . htmlspecialchars($row['boulder']) . '</a></td>';
                     echo '<td>' . htmlspecialchars($row['grade']) . '</td>';

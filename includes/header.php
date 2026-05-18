@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aktiviteter</title>
+    <title>Klätterklubben</title>
     <link href="css/header-footer.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="pictures/klatterhand.png">

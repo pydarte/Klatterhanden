@@ -1,18 +1,14 @@
 <?php
-    require_once 'functions.php';
     requireLogin();
-
     if (!isset($postId)) {
         exit();
     }
     $db = connectToDb();
     $comments = getComments($db, $postId);
-
 ?>
 
 <details>
     <summary>Kommentarer (<?php echo count($comments); ?>)</summary>
-
     <form action="send-comment.php" method="post">
         <input type="hidden" name="postid" value="<?php echo $postId; ?>">
         <textarea name="comment" rows="4" required></textarea>
@@ -24,11 +20,11 @@
         $parentComments = [];
         $replies = [];
 
-        foreach ($comments as $comment) {
+        foreach ($comments as $comment) { //Loopar igenom kommentarer och sorterar i två grupper alltså parentComments och replies.  
             if (is_null($comment['parent_comment_id'])) {
-                $parentComments[] = $comment;
+                $parentComments[] = $comment; //Blir en parent comment alltså huvudkommentar
             } else {
-                $replies[$comment['parent_comment_id']][] = $comment;
+                $replies[$comment['parent_comment_id']][] = $comment; //BLir alltså svar till huvudkommentar.
             }
         }
 
@@ -48,8 +44,8 @@
                     </form>
                 </details>
 
-                <?php if (!empty($replies[$comment['id']])): ?>
-                    <?php foreach ($replies[$comment['id']] as $reply): ?>
+                <?php if (!empty($replies[$comment['id']])): /*Loopar igenom alla replies om det kommentaren har fått något svar.*/ ?>
+                    <?php foreach ($replies[$comment['id']] as $reply): /*Skriver ut enskilt svar på kommentaren.*/ ?>
                         <div>
                             <p><strong><?php echo htmlspecialchars($reply['username']); ?></strong></p>
                             <p><?php echo htmlspecialchars($reply['comment']); ?></p>
@@ -57,7 +53,6 @@
                         </div>
                     <?php endforeach; ?>
                 <?php endif; ?>
-
                 <hr>
             </div>
         <?php endforeach; ?>

@@ -3,11 +3,8 @@
     session_start();
 
     requireLogin();
-
     requireAdmin();
-
     $db = connectToDb();
-
     $postId = $_POST['postid'];
 
     $statement = $db->prepare("DELETE FROM forumpost WHERE id = ?");

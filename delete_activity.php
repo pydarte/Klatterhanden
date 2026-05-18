@@ -3,11 +3,8 @@
     session_start();
 
     requireLogin();
-
     $db = connectToDb();
-
     requireAdmin();
-
     $id = $_POST['id'];
 
     $statement = $db->prepare("DELETE FROM activities WHERE id = ?");
