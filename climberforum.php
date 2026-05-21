@@ -1,10 +1,12 @@
 <?php
     require_once 'functions.php';
+    
+    // Startar session och säkerställer att användaren är inloggad
     session_start();
-
     $db = connectToDb();
     requireLogin();
 
+    // Hämtar användarinformation och de senaste foruminläggen
     $userId = $_SESSION['userId'];
     $user = getUserById($db, $userId);
     $latestPosts = getLatestPosts($db, 50);
@@ -34,7 +36,9 @@
     </div>
 
     <div class="post-container">
-    <?php foreach ($latestPosts as $post): ?>
+    <?php foreach ($latestPosts as $post): 
+        // Loopar igenom och visar alla foruminlägg
+        ?>
     <div class="post">
         <h3><?php echo htmlspecialchars($post['title']); ?></h3>
         <p><?php echo nl2br(htmlspecialchars($post['content'])); ?></p>
@@ -47,9 +51,12 @@
         <?php 
             $postId = $post['id'];
             include 'comment.php';
+            // Visar kommentarer kopplade till aktuellt inlägg
         ?>
 
-        <?php if ($_SESSION['username'] === 'admin') { ?>
+        <?php if ($_SESSION['username'] === 'admin') { 
+            // Endast administratören kan radera inlägg
+            ?>
             <form method="post" action="delete-post.php" style="margin-top:10px;">
                 <input type="hidden" name="postid" value="<?php echo $post['id']; ?>">
                 <button type="submit" class="delete-btn">Radera inlägg</button>

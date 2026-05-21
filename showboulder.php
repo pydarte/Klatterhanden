@@ -1,10 +1,10 @@
 <?php
     require_once 'functions.php';
 
+    // Startar session, kontrollerar inloggning och hämtar boulderdata
     session_start();
     $db = connectToDb();
     requireLogin();
-
     $user = getUserById($db, $_SESSION['userId']);
     $boulderId = $_GET['id'];
     $boulder = getBoulder($db, $boulderId);
@@ -27,7 +27,8 @@
                 <p>Område: <?php echo htmlspecialchars($boulder['area']); ?></p>
                 <p>Kommentar:<br><?php echo htmlspecialchars($boulder['comment']); ?></p>
 
-                <?php if (isset($_SESSION['username']) && $_SESSION['username'] === 'admin') { /*Endast admin kan se edit knappen.*/
+                <?php if (isset($_SESSION['username']) && $_SESSION['username'] === 'admin') { 
+                    // Visar endast redigera-knapp för admin
                     ?>
                     <a href="edit-boulder.php?id=<?php echo $boulder['id']; ?>" class="admin-btn">
                         Edit Boulder

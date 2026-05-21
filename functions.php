@@ -135,7 +135,7 @@
      * @return bool True om inlägget sparades korrekt.
     */
 
-    function createPost($db, $title, $user_id, $content) { //Skapar ett nytt foruminlägg i databasen.
+    function createPost($db, $title, $user_id, $content) {
         $createdAt = date('Y-m-d H:i:s'); 
         $statement = $db->prepare("INSERT INTO forumpost (user_id, title, content, created_at) VALUES (?, ?, ?, ?)"); 
         $statement->bind_param('isss', $user_id, $title, $content, $createdAt);
@@ -153,7 +153,7 @@
      * @return array Lista med foruminlägg.
     */
 
-    function getLatestPosts($db, $limit = 3) { //Hämtar dem senaste foruminläggen, vilket sattes som 3 som standard, men det kan ändras när i paramentern när det anropas (t.ex på forum sidan.) 
+    function getLatestPosts($db, $limit = 3) { 
         $sql = "SELECT forumpost.*, site_users.username FROM forumpost JOIN site_users 
                 ON forumpost.user_id = site_users.id ORDER BY created_at DESC LIMIT " . (int)$limit;
         $result = $db->query($sql);
@@ -170,7 +170,7 @@
      * @return array Lista med kommentarer.
     */
 
-    function getComments($db, $postId) { //Hämtar kommentarer till ett specifikt inlägg på forumet.
+    function getComments($db, $postId) {
         $statement = $db->prepare("SELECT comments.*, site_users.username FROM comments JOIN site_users ON comments.userid = site_users.id 
                                 WHERE comments.postid = ? ORDER BY comments.posted_at ASC");
         $statement->bind_param('i', $postId);
@@ -193,7 +193,7 @@
      * @return bool True om kommentaren sparades korrekt.
     */
 
-    function saveComment($db, $postId, $userId, $comment, $parentCommentId = null) { //Sparar en kommentar till ett inlägg och är också svar på kommentarer via parent_comment.
+    function saveComment($db, $postId, $userId, $comment, $parentCommentId = null) {
         $postedAt = date('Y-m-d H:i:s');
         $statement = $db->prepare("INSERT INTO comments (postid, userid, comment, posted_at, parent_comment_id) VALUES (?, ?, ?, ?, ?)");
         $statement->bind_param('iissi', $postId, $userId, $comment, $postedAt, $parentCommentId);
@@ -209,7 +209,7 @@
      * @return array|null Assoc-array med boulderdata eller null.
     */
 
-    function getBoulder($db, $boulderId) { //Hämtar en specifk boulder från databasen.
+    function getBoulder($db, $boulderId) { 
         $statement = $db->prepare("SELECT * FROM bouldertable WHERE id = ?");
         $statement->bind_param('i', $boulderId);
         $statement->execute();
@@ -230,7 +230,7 @@
      * @return void
     */
 
-    function updateBoulder($db, $id, $boulder, $grade, $area, $comment) { //Uppdaterar en boulder i databasen.
+    function updateBoulder($db, $id, $boulder, $grade, $area, $comment) {
         $statement = $db->prepare("UPDATE bouldertable SET boulder = ?, grade = ?, area = ?, comment = ? WHERE id = ?");
         $statement->bind_param('ssssi', $boulder, $grade, $area, $comment, $id);
         $statement->execute();
@@ -247,7 +247,7 @@
      * @return mysqli_result Resultat från databasen.
     */
 
-    function getActivities($db, $limit = 3) { //Hämtar aktiviteter sorterade efter datum, standarden är 3 precis som med foruminläggen.
+    function getActivities($db, $limit = 3) { 
         $sql = "SELECT * FROM activities ORDER BY date ASC LIMIT " . (int)$limit;
         return $db->query($sql);
     }

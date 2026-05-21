@@ -1,4 +1,6 @@
 <?php
+
+    // Startar session och ansluter till databasen
     session_start();
     require_once('functions.php');
     $db = connectToDb();
@@ -9,31 +11,38 @@
     $passwordConfirm = $_POST['passwordConfirm'];
     $email = $_POST['email'];
 
-    if (strlen($username) < 3) { //Kollar om användarnamn är under 3 tecken 
+    // Validering av användarnamn (minsta längd)
+    if (strlen($username) < 3) {
         $errors[] = 'Användarnamn för kort.';
     }
 
-    if (strlen($username) > 16) { //Checkar om användarnamn är över 16 tecken
+    // Validering av användarnamn (maxlängd)
+    if (strlen($username) > 16) {
         $errors[] = 'Användarnamn för långt.';
     }
 
-    if (strlen($password) < 4) { //Checkar om lösenord är under 4 tecken
+    // Validering av lösenord (minsta längd)
+    if (strlen($password) < 4) {
         $errors[] = 'Lösenord för kort.';
     }
 
-    if ($password != $passwordConfirm) { //Checkar om lösenord stämmer
+    // Kontrollerar att lösenord matchar bekräftelsen
+    if ($password != $passwordConfirm) {
         $errors[] = 'Lösenord stämmer inte.';
     }
 
-    if(count($errors) > 0) { //Finns det fel så skickas användaren tillbaka till index sidan.
+    // Om valideringsfel finns skickas användaren tillbaka med felmeddelanden
+    if(count($errors) > 0) {
         $_SESSION['formErrors'] = $errors;
         header('Location: index.php');
         exit;
     } else {
 
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT); //Hashar lösenordet innan det sparas i databasen.
+    // Krypterar lösenordet innan lagring i databasen
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    $statement = $db->prepare("INSERT INTO site_users (username, password, email) VALUES (?, ?, ?)"); //Skapar SQL förfrågan för att skapa nya användare.
+    // Lägger in ny användare i databasen med prepared statement
+    $statement = $db->prepare("INSERT INTO site_users (username, password, email) VALUES (?, ?, ?)");
     $statement->bind_param('sss', $username, $hashedPassword, $email);
     $statement->execute();
 

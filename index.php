@@ -1,7 +1,10 @@
 <?php
+    // Startar session och laddar nödvändiga filer
     session_start();
     require_once 'vendor/autoload.php';
     require_once 'functions.php';
+
+    // Ansluter till databasen
     $db = connectToDb();
 ?>
 
@@ -43,7 +46,8 @@
             </form>
         </div>
 
-        <?php if (isset($_SESSION['formErrors'])) { //Om användaren gjorde fel så får dem ett felmeddelande genom detta!
+        <?php if (isset($_SESSION['formErrors'])) { 
+            // Visar felmeddelanden från registrering om sådana finns
             foreach ($_SESSION['formErrors'] as $error) {
                 echo '<p class="error-message">' . htmlspecialchars($error) . '</p>';
             }
@@ -51,7 +55,7 @@
         }
         ?>
 
-        <?php if (isset($_SESSION['message'])) { //Om det var fel med att logga in så får användaren veta genom detta (precis som ovan.)
+        <?php if (isset($_SESSION['message'])) { // Visar meddelande från inloggning (t.ex. fel användarnamn/lösenord)
             echo '<p class="error-message">' . htmlspecialchars($_SESSION['message']) . '</p>';
             unset($_SESSION['message']);
         }

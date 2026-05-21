@@ -1,12 +1,12 @@
 <?php
     require_once 'functions.php';
     session_start();
-    
     requireLogin();
     $db = connectToDb();
     $user = getUserById($db, $_SESSION['userId']);
-
     $db->set_charset('utf8');
+
+    // Hämtar alla boulders sorterade efter ID
     $result = $db->query("SELECT * FROM bouldertable ORDER BY id ASC");
 
     require 'includes/header.php';
@@ -22,7 +22,9 @@
         </div>
     </section>
 
-    <?php if (isset($_SESSION['username']) && $_SESSION['username'] === 'admin') { /*Gör att bara admin kan see knappen.*/ ?> 
+    <?php if (isset($_SESSION['username']) && $_SESSION['username'] === 'admin') { 
+        // Visar administrationsknappen endast för administratorn
+        ?> 
         <div class="actions">
             <a href="add-boulder.php" class="admin-btn">Add boulder</a>
         </div>
@@ -41,7 +43,8 @@
             </thead>
             <tbody>
                 <?php
-                while ($row = $result->fetch_assoc()){ //Loopar igenom alla rader i resultatet och skriver ut varje boulder som en tabellrad.
+                // Skriver ut varje boulder som en rad i tabellen
+                while ($row = $result->fetch_assoc()){
                     echo '<tr>';echo '<td>' . htmlspecialchars($row['id']) . '</td>';
                     echo '<td><a href="showboulder.php?id=' . $row['id'] . '">' . htmlspecialchars($row['boulder']) . '</a></td>';
                     echo '<td>' . htmlspecialchars($row['grade']) . '</td>';

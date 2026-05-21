@@ -1,12 +1,15 @@
 <?php
     require_once 'functions.php';
 
+    // Startar session och säkerställer att användaren är inloggad
     session_start();
     requireLogin();
 
     $db = connectToDb();
-    $user = getUserById($db, $_SESSION['userId']);
     $db->set_charset('utf8');
+
+    // Hämtar användare och senaste aktiviteter från databasen
+    $user = getUserById($db, $_SESSION['userId']);
     $latestActivities = getActivities($db, 20);
 
     require 'includes/header.php';
@@ -21,7 +24,9 @@
         </div>
     </section>
 
-    <?php if (isset($_SESSION['username']) && $_SESSION['username'] === 'admin') { ?>
+    <?php if (isset($_SESSION['username']) && $_SESSION['username'] === 'admin') { 
+        // Visar endast formuläret för admin (skapa ny aktivitet)
+        ?>
         <div class="activity-form">
             <h3>Lägg till aktivitet</h3>
             <form method="post" action="add_activity.php">
@@ -35,7 +40,9 @@
     <?php } ?>
 
     <div class="activity-list">
-        <?php while ($row = $latestActivities->fetch_assoc()) { ?>
+        <?php while ($row = $latestActivities->fetch_assoc()) { 
+            // Loopar igenom och visar alla aktiviteter
+            ?>
             <div class="activity-card">
                 <h2><?php echo htmlspecialchars($row['title']); ?></h2>
                 <p class="activity-meta">
@@ -46,7 +53,9 @@
                     <?php echo htmlspecialchars($row['description']); ?>
                 </p>
 
-                <?php if (isset($_SESSION['username']) && $_SESSION['username'] === 'admin') { ?>
+                <?php if (isset($_SESSION['username']) && $_SESSION['username'] === 'admin') { 
+                    // Visar admin-knapp för att radera aktiviteter
+                    ?>
                     <form method="post" action="delete_activity.php" style="margin-top:10px;">
                         <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                         <button type="submit" class="delete-btn">Radera</button>

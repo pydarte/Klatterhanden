@@ -1,4 +1,6 @@
 <?php
+
+    // Säkerställer att användaren är inloggad och hämtar kommentarer till inlägget
     requireLogin();
     if (!isset($postId)) {
         exit();
@@ -20,11 +22,12 @@
         $parentComments = [];
         $replies = [];
 
-        foreach ($comments as $comment) { //Loopar igenom kommentarer och sorterar i två grupper alltså parentComments och replies.  
+        foreach ($comments as $comment) { 
+            // Sorterar kommentarer i huvudkommentarer och svar (trådstruktur)
             if (is_null($comment['parent_comment_id'])) {
-                $parentComments[] = $comment; //Blir en parent comment alltså huvudkommentar
+                $parentComments[] = $comment; // Huvudkommentar (inte ett svar)
             } else {
-                $replies[$comment['parent_comment_id']][] = $comment; //BLir alltså svar till huvudkommentar.
+                $replies[$comment['parent_comment_id']][] = $comment; // Svar kopplat till en huvudkommentar
             }
         }
 
@@ -44,8 +47,8 @@
                     </form>
                 </details>
 
-                <?php if (!empty($replies[$comment['id']])): /*Loopar igenom alla replies om det kommentaren har fått något svar.*/ ?>
-                    <?php foreach ($replies[$comment['id']] as $reply): /*Skriver ut enskilt svar på kommentaren.*/ ?>
+                <?php if (!empty($replies[$comment['id']])): /*Visar alla svar till kommentaren om sådana finns*/?>
+                    <?php foreach ($replies[$comment['id']] as $reply): /*Visar ett enskilt svar*/ ?>
                         <div>
                             <p><strong><?php echo htmlspecialchars($reply['username']); ?></strong></p>
                             <p><?php echo htmlspecialchars($reply['comment']); ?></p>

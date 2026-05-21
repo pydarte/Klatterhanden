@@ -1,18 +1,21 @@
 <?php
     require_once 'functions.php';
-    session_start();
 
+    // Startar session och kontrollerar att användaren är inloggad som admin
+    session_start();
     requireLogin();
     $db = connectToDb();
     requireAdmin();
 
     $id = $_GET['id'];
 
-    $statement = $db->prepare("SELECT * FROM bouldertable WHERE id = ?"); //Hämtar boulderdata från databasen baserat på ID:t.
+    // Hämtar boulderdata baserat på valt ID
+    $statement = $db->prepare("SELECT * FROM bouldertable WHERE id = ?");
     $statement->bind_param("i", $id);
     $statement->execute();
 
-    $boulder = $statement->get_result()->fetch_assoc(); //Lagrar resultatet som en array som är associativ.
+    // Hämtar resultatet som associativ array
+    $boulder = $statement->get_result()->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +34,8 @@
                     <input type="hidden" name="id" value="<?php echo $boulder['id']; ?>">
                     <p>
                         <label>Boulder</label><br>
-                        <input type="text" name="boulder" value="<?php echo htmlspecialchars($boulder['boulder']); /*htmlspecialchars används för att förhindra XSS-attacker genom att konvertera specialtecken till HTML-entiteter.*/
+                        <input type="text" name="boulder" value="<?php echo htmlspecialchars($boulder['boulder']); 
+                        // Skyddar mot XSS genom att sanera output
                         ?>"> 
                     </p>
                     <p>

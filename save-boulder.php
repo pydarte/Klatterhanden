@@ -6,15 +6,18 @@
     $db = connectToDb();
     requireAdmin();
 
-    $boulder = $_POST['boulder']; //Hämtar data från POST.
+    // Hämtar och lagrar formulärdata från POST
+    $boulder = $_POST['boulder'];
     $grade = $_POST['grade'];
     $area = $_POST['area'];
     $comment = $_POST['comment'];
 
-    $statement = $db->prepare("INSERT INTO bouldertable (boulder, grade, area, comment) VALUES (?, ?, ?, ?)"); //Kör SQL-fråga för att spara bouldern i databasen.
+    // Lägger till ny boulder i databasen med prepared statement
+    $statement = $db->prepare("INSERT INTO bouldertable (boulder, grade, area, comment) VALUES (?, ?, ?, ?)");
     $statement->bind_param("ssss", $boulder, $grade, $area, $comment);
     $statement->execute();
 
+    // Skickar användaren tillbaka till boulderlistan efter insättning
     header("Location: boulderlist.php");
     exit();
 ?>
